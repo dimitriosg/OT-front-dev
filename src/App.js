@@ -5,15 +5,15 @@ import './App.css';
 //import axios from 'axios';
 
 // Lazy loads
-const Home = lazy(() => import('./pages/Home'));
-const Login = lazy(() => import('./pages/Login'));
+const Home = lazy(() => import('./pages/Home.js'));
+const Login = lazy(() => import('./pages/Login.js'));
 
 // Lazy load the Dashboard components
-const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard'));
-const SupervisorDashboard = lazy(() => import('./dashboard/SupervisorDashboard'));
-const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard'));
-const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard'));
-const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard'));
+const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard.js'));
+const SupervisorDashboard = lazy(() => import('./dashboard/SupervisorDashboard.js'));
+const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard.js'));
+const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
+const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
 
 // Create a socket connection to the backend
 const socket = io('http://localhost:4000');  // Replace with your backend URL
