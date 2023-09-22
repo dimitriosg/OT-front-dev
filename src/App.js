@@ -17,7 +17,7 @@ const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
 const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
 
 // Create a socket connection to the backend
-const socket = io('http://localhost:5000');  // Replace with your backend URL
+const socket = io('https://order-taker-back-5416a0177bda.herokuapp.com/');  // Replace with your backend URL
 
 // Add a request interceptor
 function RoleBasedWrapper({ role, allowedRoles, children }) {
