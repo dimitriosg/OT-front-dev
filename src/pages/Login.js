@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';  // Import the CSS
+import { config } from 'dotenv';
+
+config();
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,7 +22,7 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await axios.post('http://localhost:5000/login', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
         email,
         password,
       });
@@ -39,7 +42,7 @@ const Login = () => {
 
   const handleForgotPassword = async () => {
     try {
-      await axios.post('http://localhost:5000/forgot-password', {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/forgot-password`, {
         email: forgotEmail,
         role: forgotRole,
       });
