@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Login.css';  // Import the CSS
+import { useNavigate } from 'react-router-dom';
+import '../styles/Login.css';  // Import the CSS
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,7 +19,7 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await axios.post('http://localhost:4000/login', {
+      const response = await axios.post('http://localhost:5000/login', {
         email,
         password,
       });
@@ -36,7 +39,7 @@ const Login = () => {
 
   const handleForgotPassword = async () => {
     try {
-      await axios.post('http://localhost:4000/forgot-password', {
+      await axios.post('http://localhost:5000/forgot-password', {
         email: forgotEmail,
         role: forgotRole,
       });
@@ -46,8 +49,11 @@ const Login = () => {
     }
   };
 
+  
   return (
     <div className="login-container">
+      <button className="back-button" onClick={() => navigate('/')}>Back</button>
+
       { !showForgotPassword ? ( 
         <div className="login-form">
           {/* Logo */}

@@ -2,6 +2,7 @@ import React, {lazy, Suspense, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import './App.css';
+import './pages/Home.js'
 //import axios from 'axios';
 
 // Lazy loads
@@ -16,7 +17,7 @@ const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
 const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
 
 // Create a socket connection to the backend
-const socket = io('http://localhost:4000');  // Replace with your backend URL
+const socket = io('http://localhost:5000');  // Replace with your backend URL
 
 // Add a request interceptor
 function RoleBasedWrapper({ role, allowedRoles, children }) {
@@ -25,6 +26,7 @@ function RoleBasedWrapper({ role, allowedRoles, children }) {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 function RedirectBasedOnRole() {
   const role = localStorage.getItem('role');
   const navigate = useNavigate();
