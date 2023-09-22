@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';  // Import the CSS
-import { config } from 'dotenv';
 
-config();
+
+const BACKEND_URL="https://order-taker-back-5416a0177bda.herokuapp.com"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,10 +22,12 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+      const response = await axios.post(`${BACKEND_URL}/login`, {
         email,
         password,
       });
+      console.log('Response:', response);  // Log the response
+      
       const token = response.data.token;
       localStorage.setItem('token', token);
       localStorage.setItem('role', response.data.role);
@@ -42,7 +44,7 @@ const Login = () => {
 
   const handleForgotPassword = async () => {
     try {
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/forgot-password`, {
+      await axios.post(`${BACKEND_URL}/forgot-password`, {
         email: forgotEmail,
         role: forgotRole,
       });
