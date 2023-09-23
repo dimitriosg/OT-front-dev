@@ -22,7 +22,7 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/login`, {
+      const response = await axios.post(`${BACKEND_URL}/api/users/authenticate`, {
         email,
         password,
       });
