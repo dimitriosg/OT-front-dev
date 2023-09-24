@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import io from 'socket.io-client';
 import './App.css';
 import './pages/Home.js'
-//import axios from 'axios';
+import axios from 'axios';
+import cors from 'cors';
 
 // Lazy loads
 const Home = lazy(() => import('./pages/Home.js'));
