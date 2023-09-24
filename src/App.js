@@ -8,7 +8,7 @@ import cors from 'cors';
 
 // Lazy loads
 const Home = lazy(() => import('./pages/Home.js'));
-const Login = lazy(() => import('./pages/Login.js'));
+const Login = lazy(() => import('./pages/Login-demo.js')); // default is Login.js
 
 // Lazy load the Dashboard components
 const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard.js'));
