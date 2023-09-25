@@ -126,19 +126,6 @@ function App() {
         </Suspense>
         {/* Add a 404 Not Found route or a default route here, if needed */}
       </div>
-
-      {role && ( // Only display Orders if a role is set (i.e., the user is logged in)
-        <div>
-          <h1>Orders</h1>
-          <ul>
-            {orders.map(order => (
-              <li key={order.orderID}>
-                Order ID: {order.orderID}, Status: {order.status}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </Router>
   );
 }
