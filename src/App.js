@@ -4,7 +4,6 @@ import io from 'socket.io-client';
 import './App.css';
 import './pages/Home.js'
 import axios from 'axios';
-import cors from 'cors';
 
 // Lazy loads
 const Home = lazy(() => import('./pages/Home.js'));
@@ -12,13 +11,13 @@ const Login = lazy(() => import('./pages/Login-demo.js')); // default is Login.j
 
 // Lazy load the Dashboard components
 const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard.js'));
-const SupervisorDashboard = lazy(() => import('./dashboard/SupervisorDashboard.js'));
+const SupervisorDashboard = lazy(() => import('./dashboard/CashierDashboard.js'));
 const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard.js'));
 const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
 const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
 
 // Create a socket connection to the backend
-const socket = io('https://order-taker-back-5416a0177bda.herokuapp.com');  // Replace with your backend URL
+const socket = io('https://order-taker-back-5416a0177bda.herokuapp.com');  // your backend URL
 
 // Add a request interceptor
 function RoleBasedWrapper({ role, allowedRoles, children }) {
