@@ -1,4 +1,13 @@
 /* eslint-disable no-unused-vars */
+
+// Dashboard imports
+import WaiterDashboard from './dashboard/WaiterDashboard.js';
+import CashierDashboard from './dashboard/CashierDashboard.js';
+import AccountantDashboard from './dashboard/AccountantDashboard.js';
+import AdminDashboard from './dashboard/AdminDashboard.js';
+import DeveloperDashboard from './dashboard/DeveloperDashboard.js';
+
+// Other imports
 import React, {lazy, Suspense, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -9,13 +18,6 @@ import axios from 'axios';
 // Lazy loads
 const Home = lazy(() => import('./pages/Home.js'));
 const Login = lazy(() => import('./pages/Login-demo.js')); // default is Login.js
-
-// Lazy load the Dashboard components
-const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard.js'));
-const CashierDashboard = lazy(() => import('./dashboard/CashierDashboard.js'));
-const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard.js'));
-const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
-const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
 
 // Create a socket connection to the backend (change the URL to your backend URL)
 const socket = io("https://order-taker-back-5416a0177bda.herokuapp.com", {
