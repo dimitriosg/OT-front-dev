@@ -61,6 +61,7 @@ const Login = () => {
       const token = response.data.token; 
       localStorage.setItem('token', token); 
       localStorage.setItem('role', response.data.role); 
+      localStorage.setItem('userName', response.data.name);  // Store the user's name
 
       setLoading(false); 
       console.log('Logged in successfully'); 
@@ -75,16 +76,16 @@ const Login = () => {
             navigate('/AdminDashboard');
             break;
         case 'accountant':
-            navigate('/AccountantDashboard');
+            navigate('/dashboard/AccountantDashboard');
             break;
         case 'developer':
-            navigate('/DeveloperDashboard');
+            navigate('/dashboard/DeveloperDashboard');
             break;
         case 'cashier':
-            navigate('/CashierDashboard');
+            navigate('/dashboard/CashierDashboard');
             break;
         case 'waiter':
-            navigate('/WaiterDashboard');
+            navigate('/dashboard/WaiterDashboard');
             break;
         default:
             navigate('/');  // Default redirection if role is not recognized
