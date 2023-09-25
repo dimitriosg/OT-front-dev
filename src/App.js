@@ -7,6 +7,10 @@ import AccountantDashboard from './dashboard/AccountantDashboard.js';
 import AdminDashboard from './dashboard/AdminDashboard.js';
 import DeveloperDashboard from './dashboard/DeveloperDashboard.js';
 
+// Home and Login
+import Home from './pages/Home.js';
+import Login from './pages/Login-demo.js'; // default is Login.js
+
 // Other imports
 import React, {lazy, Suspense, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
@@ -14,10 +18,6 @@ import io from 'socket.io-client';
 import './App.css';
 import './pages/Home.js'
 import axios from 'axios';
-
-// Lazy loads
-const Home = lazy(() => import('./pages/Home.js'));
-const Login = lazy(() => import('./pages/Login-demo.js')); // default is Login.js
 
 // Create a socket connection to the backend (change the URL to your backend URL)
 const socket = io("https://order-taker-back-5416a0177bda.herokuapp.com", {
@@ -35,6 +35,7 @@ function handleLogout() {
 
 // Add a request interceptor
 function RoleBasedWrapper({ role, allowedRoles, children }) {
+  console.log('RoleBasedWrapper', role, allowedRoles);
   const navigate = useNavigate();
   useEffect(() => {
       if (!allowedRoles.includes(role)) {

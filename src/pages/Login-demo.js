@@ -27,19 +27,19 @@ const Login = () => {
     if (role) {
         switch (role) {
             case 'admin':
-                navigate('/AdminDashboard');
+                navigate('/dashboard/AdminDashboard');
                 break;
             case 'developer':
-                navigate('/DeveloperDashboard');
+                navigate('/dashboard/DeveloperDashboard');
                 break;
             case 'accountant':
-                navigate('/AccountantDashboard');
+                navigate('/dashboard/AccountantDashboard');
                 break;
             case 'cashier':
-                navigate('/CashierDashboard');
+                navigate('/dashboard/CashierDashboard');
                 break;
             case 'waiter':
-                navigate('/WaiterDashboard');
+                navigate('/dashboard/WaiterDashboard');
                 break;
             default:
                 break;
