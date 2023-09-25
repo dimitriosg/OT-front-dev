@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import './DeveloperDashboard.css';
+import './css/DeveloperDashboard.css';
 import OrdersSection from '../pages/OrdersSection.js';
 
 const DeveloperDashboard = () => {
