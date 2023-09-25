@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { useState } from 'react';
 import './css/DeveloperDashboard.css';
 import OrdersSection from '../pages/OrdersSection.js';
 
 const DeveloperDashboard = () => {
+  const [orders, setOrders] = useState([]);  // Define orders here if it's supposed to be a state variable
+
+  
   return (
     <div className="developer-dashboard">
       <h1>Welcome, [Name]!</h1>
@@ -11,7 +15,6 @@ const DeveloperDashboard = () => {
       <hr />
       <h2>Tools:</h2>
       {/* ...other code */}
-      <OrdersSection orders={orders} />
 
       {/* Buttons for functions in extraFunctions.js and funcSOS.js */}
       {/* Example button: */}
