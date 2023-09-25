@@ -10,7 +10,7 @@ const DeveloperDashboard = () => {
   
   return (
     <div className="developer-dashboard">
-      <h1>Welcome, [Name]!</h1>
+      <h1>Welcome, {userName}!</h1>
       <p>You have the role of Developer</p>
       <hr />
       <h2>Tools:</h2>

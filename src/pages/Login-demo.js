@@ -67,9 +67,6 @@ const Login = () => {
       console.log('Logged in successfully'); 
       console.log('Role:', response.data.role);
 
-      // Refresh the page
-      window.location.reload();
-
       // Redirect based on role
       switch(response.data.role) {
         case 'admin':
