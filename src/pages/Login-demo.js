@@ -40,6 +40,28 @@ const Login = () => {
       setLoading(false); 
       console.log('Logged in successfully'); 
 
+      // Redirect based on role
+      switch(response.data.role) {
+        case 'admin':
+            navigate('/AdminDashboard');
+            break;
+        case 'accountant':
+            navigate('/AccountantDashboard');
+            break;
+        case 'developer':
+            navigate('/DeveloperDashboard');
+            break;
+        case 'cashier':
+            navigate('/CashierDashboard');
+            break;
+        case 'waiter':
+            navigate('/WaiterDashboard');
+            break;
+        default:
+            navigate('/');  // Default redirection if role is not recognized
+      }
+
+
     } catch (error) { 
       setLoading(false); 
       setError('Invalid credentials or error logging in.'); 
