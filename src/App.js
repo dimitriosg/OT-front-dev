@@ -16,8 +16,13 @@ const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard.j
 const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
 const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
 
-// Create a socket connection to the backend
-const socket = io('https://order-taker-back-5416a0177bda.herokuapp.com');  // your backend URL
+// Create a socket connection to the backend (change the URL to your backend URL)
+const socket = io("https://order-taker-back-5416a0177bda.herokuapp.com", {
+  path: "/socket.io",
+  reconnectionAttempts: 3,  // Attempt to reconnect 3 times before giving up
+  reconnectionDelay: 1000,  // Start with a reconnection delay of 1 second
+  reconnectionDelayMax: 5000,  // Maximum reconnection delay of 5 seconds
+});
 
 // Add a request interceptor
 function RoleBasedWrapper({ role, allowedRoles, children }) {
@@ -58,6 +63,11 @@ function App() {
       setOrders(prevOrders => prevOrders.map(order =>
         order.orderID === updatedOrder.orderID ? updatedOrder : order
       )); // Update the status of the matching order
+    });
+
+    // Error Handling
+    socket.on('connect_error', (error) => {
+      console.error('Socket connection error:', error);
     });
 
     return () => {
