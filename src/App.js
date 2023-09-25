@@ -25,12 +25,24 @@ const socket = io("https://order-taker-back-5416a0177bda.herokuapp.com", {
   reconnectionDelayMax: 5000,  // Maximum reconnection delay of 5 seconds
 });
 
+function handleLogout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('role');
+  window.location = '/login';  // This will redirect to the login page
+}
+
 // Add a request interceptor
 function RoleBasedWrapper({ role, allowedRoles, children }) {
-  return (
-    allowedRoles.includes(role) ? children : <div>Access Denied</div>
-  );
+  const navigate = useNavigate();
+  useEffect(() => {
+      if (!allowedRoles.includes(role)) {
+          navigate('/login');
+      }
+  }, [role, allowedRoles, navigate]);
+
+  return allowedRoles.includes(role) ? children : null;
 }
+
 
 // eslint-disable-next-line no-unused-vars
 function RedirectBasedOnRole() {
@@ -82,6 +94,10 @@ function App() {
     <Router>
       <div>
         {/* Add your navigation links here, if any */}
+        {role && (
+                    <button onClick={handleLogout}>Logout</button>
+        )}
+        
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />

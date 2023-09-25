@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
 import '../styles/Login.css';  // Import the CSS 
@@ -13,6 +13,7 @@ const api = axios.create({
 
 const Login = () => { 
   const navigate = useNavigate(); 
+  const role = localStorage.getItem('role');
 
   const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState(''); 
@@ -21,6 +22,30 @@ const Login = () => {
   const [forgotEmail, setForgotEmail] = useState(''); 
   const [forgotRole, setForgotRole] = useState(''); 
   const [showForgotPassword, setShowForgotPassword] = useState(false); 
+
+  useEffect(() => {
+    if (role) {
+        switch (role) {
+            case 'admin':
+                navigate('/AdminDashboard');
+                break;
+            case 'developer':
+                navigate('/DeveloperDashboard');
+                break;
+            case 'accountant':
+                navigate('/AccountantDashboard');
+                break;
+            case 'cashier':
+                navigate('/CashierDashboard');
+                break;
+            case 'waiter':
+                navigate('/WaiterDashboard');
+                break;
+            default:
+                break;
+        }
+    }
+  }, [role, navigate]);
 
   const handleLogin = async () => { 
     setLoading(true); 
