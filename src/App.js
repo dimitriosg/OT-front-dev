@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {lazy, Suspense, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -11,7 +12,7 @@ const Login = lazy(() => import('./pages/Login-demo.js')); // default is Login.j
 
 // Lazy load the Dashboard components
 const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard.js'));
-const SupervisorDashboard = lazy(() => import('./dashboard/CashierDashboard.js'));
+const CashierDashboard = lazy(() => import('./dashboard/CashierDashboard.js'));
 const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard.js'));
 const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard.js'));
 const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard.js'));
@@ -87,35 +88,35 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             {/* Waiter Dash */}
-            <Route path="/dashboard/waiter" element={
+            <Route path="/dashboard/WaiterDashboard" element={
               <RoleBasedWrapper role={localStorage.getItem('role')} allowedRoles={['waiter']}>
                 <WaiterDashboard />
               </RoleBasedWrapper>
             } />
 
-            {/* SUP Dash */}
-            <Route path="/dashboard/supervisor" element={
-              <RoleBasedWrapper role={localStorage.getItem('role')} allowedRoles={['supervisor']}>
-                <SupervisorDashboard />
+            {/* Cashier Dash */}
+            <Route path="/dashboard/CashierDashboard" element={
+              <RoleBasedWrapper role={localStorage.getItem('role')} allowedRoles={['cashier']}>
+                <CashierDashboard />
               </RoleBasedWrapper>
             } />
 
             {/* ACC Dash */}
-            <Route path="/dashboard/accountant" element={
+            <Route path="/dashboard/AccountantDashboard" element={
               <RoleBasedWrapper role={localStorage.getItem('role')} allowedRoles={['accountant']}>
                 <AccountantDashboard />
               </RoleBasedWrapper>
             } />
 
             {/* ADM Dash */}
-            <Route path="/dashboard/admin" element={
+            <Route path="/dashboard/AdminDashboard" element={
               <RoleBasedWrapper role={localStorage.getItem('role')} allowedRoles={['admin']}>
                 <AdminDashboard />
               </RoleBasedWrapper>
             } />
 
             {/* DEV Dash */}
-            <Route path="/dashboard/developer" element={
+            <Route path="/dashboard/DeveloperDashboard" element={
               <RoleBasedWrapper role={localStorage.getItem('role')} allowedRoles={['developer']}>
                 <DeveloperDashboard />
               </RoleBasedWrapper>
