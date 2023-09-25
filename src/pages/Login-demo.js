@@ -39,6 +39,7 @@ const Login = () => {
 
       setLoading(false); 
       console.log('Logged in successfully'); 
+      console.log('Role:', response.data.role);
 
       // Redirect based on role
       switch(response.data.role) {
