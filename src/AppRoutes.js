@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import RouteComponents from './components/RouteComponents.js';
 
 import Home from './pages/Home.js';
-import Login from './pages/Login.js';
+import Login from './pages/Login-demo.js'; // Login page (for now)
 
 import WaiterDashboard from './dashboard/WaiterDashboard.js';
 import CashierDashboard from './dashboard/CashierDashboard.js';
