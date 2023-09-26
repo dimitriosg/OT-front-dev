@@ -13,8 +13,6 @@
     background-color: #f0f0f0;
 }
 
-/* src/dashboard/WaiterDashboard.css */
-
 .tables-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
