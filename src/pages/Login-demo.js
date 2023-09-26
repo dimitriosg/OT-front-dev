@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
@@ -22,30 +23,6 @@ const Login = () => {
   const [forgotEmail, setForgotEmail] = useState(''); 
   const [forgotRole, setForgotRole] = useState(''); 
   const [showForgotPassword, setShowForgotPassword] = useState(false); 
-
-  useEffect(() => {
-    if (role) {
-        switch (role) {
-            case 'admin':
-                navigate('/dashboard/AdminDashboard');
-                break;
-            case 'developer':
-                navigate('/dashboard/DeveloperDashboard');
-                break;
-            case 'accountant':
-                navigate('/dashboard/AccountantDashboard');
-                break;
-            case 'cashier':
-                navigate('/dashboard/CashierDashboard');
-                break;
-            case 'waiter':
-                navigate('/dashboard/WaiterDashboard');
-                break;
-            default:
-                break;
-        }
-    }
-  }, [role, navigate]);
 
   const handleLogin = async () => { 
     setLoading(true); 
@@ -107,6 +84,47 @@ const Login = () => {
       console.log('Error during forgot password', error); 
     } 
   }; 
+
+  // Call this function whenever an Admin or Developer switches roles
+  const switchRoleAndNavigate = (newRole) => {
+    const currentRole = localStorage.getItem('role');
+
+    // Check if the function is called by an Admin or Developer
+    if (currentRole !== 'admin' && currentRole !== 'developer') {
+      console.error('Permission denied: Only Admins and Developers can switch roles.');
+      return;  // Exit the function if not an Admin or Developer
+    }
+
+    // Check if an Admin is trying to switch to Developer
+    if (currentRole === 'admin' && newRole === 'developer') {
+      console.error('Permission denied: Admins cannot switch to Developer role.');
+      return;  // Exit the function if an Admin is trying to switch to Developer
+    }
+
+    // Temporarily update the role in the local storage or in the state
+    localStorage.setItem('role', newRole);
+
+    // Navigate to the respective dashboard based on the new role
+    switch (newRole) {
+        case 'admin':
+            navigate('/dashboard/AdminDashboard');
+            break;
+        case 'developer':
+            navigate('/dashboard/DeveloperDashboard');
+            break;
+        case 'accountant':
+            navigate('/dashboard/AccountantDashboard');
+            break;
+        case 'cashier':
+            navigate('/dashboard/CashierDashboard');
+            break;
+        case 'waiter':
+            navigate('/dashboard/WaiterDashboard');
+            break;
+        default:
+            navigate('/');  // Default redirection if role is not recognized
+    }
+};
 
   return (
     <div className="login-container">

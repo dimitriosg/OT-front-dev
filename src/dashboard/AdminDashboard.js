@@ -1,9 +1,22 @@
 // src/dashboard/AdminDashboard.js
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { switchRoleAndNavigate } from './dashFunctions/roleSwitcher.js';
 
 const AdminDashboard = () => {
+    const navigate = useNavigate();
+    const [selectedRole, setSelectedRole] = useState('');
+
     const [activeTab, setActiveTab] = useState('users');
+
+    const handleRoleChange = (event) => {
+        setSelectedRole(event.target.value);
+    };
+
+    const handleSwitchRole = () => {
+        switchRoleAndNavigate(selectedRole, navigate);
+    };
 
     return (
         <div className="admin-dashboard">
@@ -18,6 +31,16 @@ const AdminDashboard = () => {
                 {activeTab === 'menu' && <MenuTab />}
                 {activeTab === 'orders' && <OrdersTab />}
             </div>
+
+            <select value={selectedRole} onChange={handleRoleChange}>
+                <option value="" disabled>Select role</option>
+                <option value="accountant">Accountant</option>
+                <option value="cashier">Cashier</option>
+                <option value="waiter">Waiter</option>
+            </select>
+            <button onClick={handleSwitchRole}>
+                Switch Role
+            </button>
         </div>
     );
 };
