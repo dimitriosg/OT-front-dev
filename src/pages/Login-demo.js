@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+// frontend\src\pages\Login-demo.js
+
 // REDUX
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '../slices/authSlice';
@@ -60,7 +62,7 @@ const Login = () => {
 
       setLoading(false); 
       dispatch(loginSuccess({ token, role: response.data.role, userName: response.data.name }));
-      console.log('Logged in successfully'); 
+      console.log('Login success action dispatched');
       console.log('Role:', response.data.role);
 
       // Delay navigation slightly to ensure localStorage is updated

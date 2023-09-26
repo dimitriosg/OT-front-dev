@@ -1,4 +1,4 @@
-// store.js
+// frontend\src\features\store.js
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../slices/authSlice';
 
