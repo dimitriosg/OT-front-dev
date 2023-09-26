@@ -35,15 +35,15 @@ const Login = () => {
   const dispatch = useDispatch();
   const logoutSuccess = useSelector(state => state.auth.logoutSuccess);
 
-  useEffect(() => {
-    api.get('/validate')
-      .then(() => {
-        console.log('User validated');
-      })
-      .catch(err => {
-        console.error('Validation error', err);
-      });
-  }, []);
+//  useEffect(() => {
+//    api.get('/validate')
+//      .then(() => {
+//       console.log('User validated');
+//      })
+//      .catch(err => {
+//        console.error('Validation error', err);
+//      });
+//  }, []);
 
   const handleLogin = async () => { 
     setLoading(true); 
