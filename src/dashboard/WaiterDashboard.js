@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // src/dashboard/WaiterDashboard.js
 
 import React, { useState, useEffect } from 'react';
@@ -8,6 +9,7 @@ import './css/WaiterDashboard.css';  // Import the CSS
 const WaiterDashboard = () => {
     const [tables, setTables] = useState([]);
     const [selectedTable, setSelectedTable] = useState(null);
+    const userName = localStorage.getItem('userName');
 
     useEffect(() => {
         // Fetch the tables assigned to the waiter from the backend

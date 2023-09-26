@@ -8,6 +8,7 @@ const BACKEND_URL = "https://order-taker-back-5416a0177bda.herokuapp.com";
 function AccountantDashboard() {
   const [cashHoldings, setCashHoldings] = useState([]);
   const [name, setName] = useState('');
+  const userName = localStorage.getItem('userName');
 
   useEffect(() => {
     // Fetch the name of the ACC from the backend

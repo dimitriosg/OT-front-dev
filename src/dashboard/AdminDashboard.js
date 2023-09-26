@@ -7,6 +7,7 @@ import { switchRoleAndNavigate } from './dashFunctions/roleSwitcher.js';
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const [selectedRole, setSelectedRole] = useState('');
+    const userName = localStorage.getItem('userName');
 
     const [activeTab, setActiveTab] = useState('users');
 
@@ -20,7 +21,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
-            <h1>Welcome, {localStorage.getItem('userName')}!</h1>
+            <h1>Welcome, {userName}!</h1>
             <div className="tabs">
                 <button onClick={() => setActiveTab('users')}>Users</button>
                 <button onClick={() => setActiveTab('menu')}>Menu</button>

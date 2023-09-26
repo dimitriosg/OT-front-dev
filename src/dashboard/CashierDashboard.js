@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 function CashierDashboard() {
   const [cashHolding, setCashHolding] = useState(null);
   const [name, setName] = useState('');
+  const userName = localStorage.getItem('userName');
 
   useEffect(() => {
     // Fetch the current cash holding and the name of the cashier from the backend

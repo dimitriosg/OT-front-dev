@@ -9,6 +9,7 @@ import { switchRoleAndNavigate } from './dashFunctions/roleSwitcher.js';
 const DeveloperDashboard = () => {
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState('');
+  const userName = localStorage.getItem('userName');
 
   const [orders, setOrders] = useState([]);  // Define orders here if it's supposed to be a state variable
 
