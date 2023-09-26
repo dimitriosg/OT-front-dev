@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { TableBox } from './dashFunctions/TableBox';
 import { OrderManager } from './dashFunctions/OrderManager';
-import './WaiterDashboard.css';  // Import the CSS
+import '../css/WaiterDashboard.css';  // Import the CSS
 
 const WaiterDashboard = () => {
     const [tables, setTables] = useState([]);

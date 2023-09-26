@@ -1,7 +1,7 @@
 // src/dashboard/dashFunctions/TableBox.js
 
 import React from 'react';
-import './TableBox.css';  // Import the CSS
+import '../css/TableBox.css';  // Import the CSS
 
 
 const TableBox = ({ table, onSelect }) => {
