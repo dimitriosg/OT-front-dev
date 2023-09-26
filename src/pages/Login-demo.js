@@ -52,27 +52,34 @@ const Login = () => {
       console.log('Logged in successfully'); 
       console.log('Role:', response.data.role);
 
+      // Delay navigation slightly to ensure localStorage is updated
+      setTimeout(() => {
+        // Redirect based on role
+        switch(response.data.role) {
+          case 'admin':
+              navigate('/dashboard/AdminDashboard');
+              break;
+          case 'accountant':
+              navigate('/dashboard/AccountantDashboard');
+              break;
+          case 'developer':
+              navigate('/dashboard/DeveloperDashboard');
+              break;
+          case 'cashier':
+              navigate('/dashboard/CashierDashboard');
+              break;
+          case 'waiter':
+              navigate('/dashboard/WaiterDashboard');
+              break;
+          default:
+              setError('Unrecognized role. Unable to redirect to dashboard.');
+              navigate('/');  // Default redirection if role is not recognized
+        }
+      }, 100);
+
+
       // Redirect based on role
-      switch(response.data.role) {
-        case 'admin':
-            navigate('/dashboard/AdminDashboard');
-            break;
-        case 'accountant':
-            navigate('/dashboard/AccountantDashboard');
-            break;
-        case 'developer':
-            navigate('/dashboard/DeveloperDashboard');
-            break;
-        case 'cashier':
-            navigate('/dashboard/CashierDashboard');
-            break;
-        case 'waiter':
-            navigate('/dashboard/WaiterDashboard');
-            break;
-        default:
-            setError('Unrecognized role. Unable to redirect to dashboard.');
-            navigate('/');  // Default redirection if role is not recognized
-      }
+
 
 
     } catch (error) { 
@@ -162,9 +169,9 @@ const Login = () => {
     <div className="login-container">
       <button className="back-button" onClick={() => navigate('/')}>Back</button>
 
-      {logoutSuccess && <p>Successful logout</p>}
+      {logoutSuccess && <div className="logout-successfully">Successfully logged out</div>}
       {role && (
-        <button onClick={handleGoToDashboard}>Go to Dashboard</button>
+        <button className="dashboard-button" onClick={handleGoToDashboard}>Go to Dashboard</button>
       )}
 
       { !showForgotPassword ? ( 

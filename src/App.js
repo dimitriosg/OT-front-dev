@@ -1,12 +1,5 @@
 /* eslint-disable no-unused-vars */
 
-// Dashboard imports
-import WaiterDashboard from './dashboard/WaiterDashboard.js';
-import CashierDashboard from './dashboard/CashierDashboard.js';
-import AccountantDashboard from './dashboard/AccountantDashboard.js';
-import AdminDashboard from './dashboard/AdminDashboard.js';
-import DeveloperDashboard from './dashboard/DeveloperDashboard.js';
-
 // Home and Login
 import Home from './pages/Home.js';
 import Login from './pages/Login-demo.js'; // default is Login.js
@@ -18,6 +11,13 @@ import io from 'socket.io-client';
 import './App.css';
 import './pages/Home.js'
 import axios from 'axios';
+
+// Dashboard imports LAZY LOADING
+const AdminDashboard = lazy(() => import('./dashboard/AdminDashboard'));
+const DeveloperDashboard = lazy(() => import('./dashboard/DeveloperDashboard'));
+const WaiterDashboard = lazy(() => import('./dashboard/WaiterDashboard'));
+const CashierDashboard = lazy(() => import('./dashboard/CashierDashboard'));
+const AccountantDashboard = lazy(() => import('./dashboard/AccountantDashboard'));
 
 // Create a socket connection to the backend (change the URL to your backend URL)
 const socket = io("https://order-taker-back-5416a0177bda.herokuapp.com", {
