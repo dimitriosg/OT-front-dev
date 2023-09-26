@@ -1,8 +1,8 @@
 // src/dashboard/WaiterDashboard.js
 
 import React, { useState, useEffect } from 'react';
-import { TableBox } from './dashFunctions/TableBox';
-import { OrderManager } from './dashFunctions/OrderManager';
+import { TableBox } from './dashFunctions/TableBox.js';
+import { OrderManager } from './dashFunctions/OrderManager.js';
 import './css/WaiterDashboard.css';  // Import the CSS
 
 const WaiterDashboard = () => {
