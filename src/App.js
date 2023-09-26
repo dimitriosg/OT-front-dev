@@ -30,7 +30,7 @@ const socket = io("https://order-taker-back-5416a0177bda.herokuapp.com", {
 function handleLogout() {
   localStorage.removeItem('token');
   localStorage.removeItem('role');
-  window.location = '/login';  // This will redirect to the login page
+  window.location = '/login?loggedOut=true';  // Pass a query parameter to indicate logout success
 }
 
 // Add a request interceptor
@@ -98,7 +98,9 @@ function App() {
       <div>
         {/* Add your navigation links here, if any */}
         {role && (
-                    <button onClick={handleLogout}>Logout</button>
+                  <>
+                   <button onClick={handleLogout}>Logout</button>
+                  </>
         )}
         
         <Suspense fallback={<div>Loading...</div>}>

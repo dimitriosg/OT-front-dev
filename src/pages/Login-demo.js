@@ -23,6 +23,14 @@ const Login = () => {
   const [forgotEmail, setForgotEmail] = useState(''); 
   const [forgotRole, setForgotRole] = useState(''); 
   const [showForgotPassword, setShowForgotPassword] = useState(false); 
+  const [logoutSuccess, setLogoutSuccess] = useState(false); 
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('loggedOut')) {
+      setLogoutSuccess(true);
+    }
+  }, []);
 
   const handleLogin = async () => { 
     setLoading(true); 
@@ -47,7 +55,7 @@ const Login = () => {
       // Redirect based on role
       switch(response.data.role) {
         case 'admin':
-            navigate('/AdminDashboard');
+            navigate('/dashboard/AdminDashboard');
             break;
         case 'accountant':
             navigate('/dashboard/AccountantDashboard');
@@ -62,6 +70,7 @@ const Login = () => {
             navigate('/dashboard/WaiterDashboard');
             break;
         default:
+            setError('Unrecognized role. Unable to redirect to dashboard.');
             navigate('/');  // Default redirection if role is not recognized
       }
 
@@ -84,6 +93,29 @@ const Login = () => {
       console.log('Error during forgot password', error); 
     } 
   }; 
+
+  const handleGoToDashboard = () => {
+    switch(role) {
+        case 'admin':
+            navigate('/dashboard/AdminDashboard');
+            break;
+        case 'accountant':
+            navigate('/dashboard/AccountantDashboard');
+            break;
+        case 'developer':
+            navigate('/dashboard/DeveloperDashboard');
+            break;
+        case 'cashier':
+            navigate('/dashboard/CashierDashboard');
+            break;
+        case 'waiter':
+            navigate('/dashboard/WaiterDashboard');
+            break;
+        default:
+            setError('Unrecognized role. Unable to redirect to dashboard.');
+            break;
+    }
+};
 
   // Call this function whenever an Admin or Developer switches roles
   const switchRoleAndNavigate = (newRole) => {
@@ -129,6 +161,11 @@ const Login = () => {
   return (
     <div className="login-container">
       <button className="back-button" onClick={() => navigate('/')}>Back</button>
+
+      {logoutSuccess && <p>Successful logout</p>}
+      {role && (
+        <button onClick={handleGoToDashboard}>Go to Dashboard</button>
+      )}
 
       { !showForgotPassword ? ( 
         <div className="login-form">
