@@ -1,4 +1,9 @@
 /* eslint-disable no-unused-vars */
+// REDUX
+import { useDispatch, useSelector } from 'react-redux';
+import { loginSuccess } from '../slices/authSlice';
+
+// REACT + others
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
@@ -23,13 +28,18 @@ const Login = () => {
   const [forgotEmail, setForgotEmail] = useState(''); 
   const [forgotRole, setForgotRole] = useState(''); 
   const [showForgotPassword, setShowForgotPassword] = useState(false); 
-  const [logoutSuccess, setLogoutSuccess] = useState(false); 
+  //const [logoutSuccess, setLogoutSuccess] = useState(false); 
+
+  const dispatch = useDispatch();
+  const logoutSuccess = useSelector(state => state.auth.logoutSuccess);
+
+ 
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('loggedOut')) {
-      setLogoutSuccess(true);
-    }
+    //const params = new URLSearchParams(window.location.search);
+    //if (params.get('loggedOut')) {
+    //  setLogoutSuccess(true);
+    //}
   }, []);
 
   const handleLogin = async () => { 
@@ -49,6 +59,7 @@ const Login = () => {
       localStorage.setItem('userName', response.data.name);  // Store the user's name
 
       setLoading(false); 
+      dispatch(loginSuccess({ token, role: response.data.role, userName: response.data.name }));
       console.log('Logged in successfully'); 
       console.log('Role:', response.data.role);
 
@@ -169,7 +180,7 @@ const Login = () => {
     <div className="login-container">
       <button className="back-button" onClick={() => navigate('/')}>Back</button>
 
-      {logoutSuccess && <div className="logout-successfully">Successfully logged out</div>}
+      {logoutSuccess && <p className="logout-successfully">Successfully logged out</p>}
       {role && (
         <button className="dashboard-button" onClick={handleGoToDashboard}>Go to Dashboard</button>
       )}
