@@ -35,13 +35,14 @@ const Login = () => {
   const dispatch = useDispatch();
   const logoutSuccess = useSelector(state => state.auth.logoutSuccess);
 
- 
-
   useEffect(() => {
-    //const params = new URLSearchParams(window.location.search);
-    //if (params.get('loggedOut')) {
-    //  setLogoutSuccess(true);
-    //}
+    api.get('/validate')
+      .then(() => {
+        console.log('User validated');
+      })
+      .catch(err => {
+        console.error('Validation error', err);
+      });
   }, []);
 
   const handleLogin = async () => { 
@@ -61,7 +62,19 @@ const Login = () => {
       localStorage.setItem('userName', response.data.name);  // Store the user's name
 
       setLoading(false); 
-      dispatch(loginSuccess({ token, role: response.data.role, userName: response.data.name }));
+      dispatch(loginSuccess({ 
+        token: response.data.token, 
+        role: response.data.role, 
+        userName: response.data.name,
+        user: {
+          _id: response.data._id, // from User model
+          name: response.data.name,
+          email: response.data.email,
+          role: response.data.role,
+          // map other properties from response.data to 
+          // properties defined in User interface
+        }
+      }));
       console.log('Login success action dispatched');
       console.log('Role:', response.data.role);
 
