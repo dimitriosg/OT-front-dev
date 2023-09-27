@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios'; // Uncomment this line if you'll use axios
+import axios from 'axios'; // Uncomment this line if you'll use axios
+import LogoutButton from '../components/LogoutButton';
+
 
 function CashierDashboard() {
   const [cashHolding, setCashHolding] = useState(null);
@@ -37,6 +39,7 @@ function CashierDashboard() {
 
   return (
     <div>
+      <LogoutButton />
       <h1>Cashier Dashboard</h1>
       <h2>Welcome {name}!</h2>
       <p>Current Cash Holding: €{cashHolding?.amount || 0}</p>

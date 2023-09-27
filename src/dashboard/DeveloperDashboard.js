@@ -5,6 +5,8 @@ import './css/DeveloperDashboard.css';
 import OrdersSection from '../pages/OrdersSection.js';
 import { useNavigate } from 'react-router-dom';
 import { switchRoleAndNavigate } from './dashFunctions/roleSwitcher.js';
+import LogoutButton from '../components/LogoutButton';
+
 
 const DeveloperDashboard = () => {
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ const DeveloperDashboard = () => {
   
   return (
     <div className="developer-dashboard">
+      <LogoutButton />
       <h1>Welcome, {userName}!</h1>
       <p>You have the role of Developer</p>
       <hr />

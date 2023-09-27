@@ -3,10 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { User } from '../types.ts';
 
 const initialState = {
-    user: null,
-    token: localStorage.getItem('token'),
-    role: localStorage.getItem('role'),
-    userName: localStorage.getItem('userName'),
+    token: null,
+    role: null,
+    userName: null,
     logoutSuccess: false,
 };
 
@@ -15,19 +14,25 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         loginSuccess(state, action) {
-            state.token = action.payload.token;
-            state.role = action.payload.role;
-            state.userName = action.payload.userName;
-            state.user = action.payload.user;
-            localStorage.setItem('token', action.payload.token);
-            localStorage.setItem('role', action.payload.role);
-            localStorage.setItem('userName', action.payload.userName);
+            console.log("loginSuccess action called with payload:", action.payload);
+            const { token, role, userName } = action.payload;
+
+            state.token = token;
+            state.role = role;
+            state.userName = userName;
+
+            // Update local storage here
+            localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
+            localStorage.setItem('userName', userName);
         },
         logout(state) {
             state.token = null;
             state.role = null;
             state.userName = null;
             state.logoutSuccess = true;
+            
+            // Clear local storage here
             localStorage.removeItem('token');
             localStorage.removeItem('role');
             localStorage.removeItem('userName');

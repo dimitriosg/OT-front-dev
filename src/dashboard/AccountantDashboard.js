@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import LogoutButton from '../components/LogoutButton';
+
 
 const BACKEND_URL = "https://order-taker-back-5416a0177bda.herokuapp.com";
 
@@ -44,6 +46,7 @@ function AccountantDashboard() {
 
   return (
     <div>
+      <LogoutButton />
       <h1>Accountant Dashboard</h1>
       <h2>Welcome {name}!</h2>
       <ul>

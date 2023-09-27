@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import TableBox from './dashFunctions/TableBox.js';
 import OrderManager from './dashFunctions/OrderManager.js';
 import './css/WaiterDashboard.css';  // Import the CSS
+import LogoutButton from '../components/LogoutButton';
+
 
 const WaiterDashboard = () => {
     const [tables, setTables] = useState([]);
@@ -29,6 +31,7 @@ const WaiterDashboard = () => {
 
     return (
         <div className="waiter-dashboard">
+            <LogoutButton />
             <h1>Welcome, {localStorage.getItem('userName')}!</h1>
             <div className="tables-grid">
                 {tables.map((table, index) => (

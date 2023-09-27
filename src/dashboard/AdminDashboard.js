@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { switchRoleAndNavigate } from './dashFunctions/roleSwitcher.js';
+import LogoutButton from '../components/LogoutButton';
+
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
+            <LogoutButton />
             <h1>Welcome, {userName}!</h1>
             <div className="tabs">
                 <button onClick={() => setActiveTab('users')}>Users</button>
