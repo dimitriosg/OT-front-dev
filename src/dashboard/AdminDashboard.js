@@ -58,21 +58,9 @@ const AdminDashboard = () => {
                 {activeTab === 'orders' && <OrdersTab />}
             </div>
 
-            <select value={selectedRole} onChange={handleRoleChange}>
-                <option value="" disabled>Select role</option>
-                <option value="developer">Developer</option>
-                <option value="accountant">Accountant</option>
-                <option value="cashier">Cashier</option>
-                <option value="waiter">Waiter</option>
-            </select>
-            <button onClick={handleApplyRole} className="btn btn-success m-2">
-                Apply
-            </button>
-            {hasSwitchedRole && (
-                <button onClick={handleRevertRole} className="btn btn-warning m-2">
-                Revert to Original Role
-                </button>
-            )}
+            <hr />
+            <RoleSwitcher />
+            <hr />
         </div>
     );
 };

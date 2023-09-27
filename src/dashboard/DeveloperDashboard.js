@@ -39,25 +39,14 @@ const DeveloperDashboard = () => {
         <button onClick={() => navigate(-1)} className="btn btn-secondary">Back</button>
         <button onClick={() => localStorage.clear()} className="btn btn-danger">Logout</button>
       </div>
-      <RoleSwitcher navigate={navigate} />
+
       <h1>Welcome, {userName}!</h1>
       <p>You have the role of Developer</p>
+
       <hr />
-      <select value={selectedRole} onChange={handleRoleChange} className="form-select m-2">
-          <option value="" disabled>Select role</option>
-          <option value="admin">Admin</option>
-          <option value="accountant">Accountant</option>
-          <option value="cashier">Cashier</option>
-          <option value="waiter">Waiter</option>
-      </select>
-      <button onClick={handleApplyRole} className="btn btn-success m-2">
-          Apply
-      </button>
-      {hasSwitchedRole && (
-          <button onClick={handleRevertRole} className="btn btn-warning m-2">
-          Revert to Original Role
-          </button>
-      )}
+      <RoleSwitcher />
+      <hr />
+      
     </div>
   );
 };

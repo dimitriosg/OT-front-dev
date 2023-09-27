@@ -1,19 +1,35 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const RoleSwitcher = ({ newRole, navigate }) => {
-    const currentRole = localStorage.getItem('role');
 
-    if (currentRole !== 'admin' && currentRole !== 'developer') {
-        console.error('Permission denied: Only Admins and Developers can switch roles.');
-        return null;
-    }
+const RoleSwitcher = () => {
+    const navigate = useNavigate();
+    const [selectedRole, setSelectedRole] = useState('');
+    const [originalRole, setOriginalRole] = useState(localStorage.getItem('role'));
+    const [hasSwitchedRole, setHasSwitchedRole] = useState(false);
 
-    if (currentRole === 'admin' && newRole === 'developer') {
-        console.error('Permission denied: Admins cannot switch to Developer role.');
-        return null;
-    }
 
-    const handleSwitchRole = () => {
+    const handleRoleChange = (event) => {
+        setSelectedRole(event.target.value);
+    };
+
+    const handleApplyRole = () => {
+        if (selectedRole) {
+            switchRoleAndNavigate(selectedRole, navigate);
+            setHasSwitchedRole(true);
+        }
+    };
+
+    const handleRevertRole = () => {
+        if (hasSwitchedRole) {
+            switchRoleAndNavigate(originalRole, navigate);
+            setHasSwitchedRole(false);
+        }
+    };
+
+    const switchRoleAndNavigate = (newRole, navigate) => {
         localStorage.setItem('role', newRole);
 
         switch (newRole) {
@@ -39,7 +55,7 @@ const RoleSwitcher = ({ newRole, navigate }) => {
 
     return (
         <div>
-            <select value={newRole} onChange={(e) => handleSwitchRole(e.target.value)}>
+            <select value={selectedRole} onChange={handleRoleChange} className="form-select m-2">
                 <option value="" disabled>Select role</option>
                 <option value="admin">Admin</option>
                 <option value="developer">Developer</option>
@@ -47,6 +63,14 @@ const RoleSwitcher = ({ newRole, navigate }) => {
                 <option value="cashier">Cashier</option>
                 <option value="waiter">Waiter</option>
             </select>
+            <button onClick={handleApplyRole} className="btn btn-success m-2">
+                Apply
+            </button>
+            {hasSwitchedRole && (
+                <button onClick={handleRevertRole} className="btn btn-warning m-2">
+                    Revert to Original Role
+                </button>
+            )}
         </div>
     );
 };
