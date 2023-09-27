@@ -1,20 +1,22 @@
 // src/dashboard/AdminDashboard.js
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import RoleSwitcher from '../components/RoleSwitcher';
-import LogoutButton from '../components/LogoutButton';
 import '../styles/DashboardStyles.css';  // Import the styles
 
-
-
 const AdminDashboard = () => {
+    const navigate = useNavigate();
     const userName = localStorage.getItem('userName');
     const [activeTab, setActiveTab] = useState('users');
 
     return (
         <div className="admin-dashboard">
-            <LogoutButton />
-            <RoleSwitcher />
+            <div className="d-flex justify-content-between p-2">
+                <button onClick={() => navigate(-1)} className="btn btn-secondary">Back</button>
+                <button onClick={() => localStorage.clear()} className="btn btn-danger">Logout</button>
+            </div>
+            <RoleSwitcher navigate={navigate} />
             <h1>Welcome, {userName}!</h1>
             <div className="tabs">
                 <button onClick={() => setActiveTab('users')}>Users</button>
