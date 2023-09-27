@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
+import '../styles/DashboardStyles.css';  // Import the styles
+
 
 
 const BACKEND_URL = "https://order-taker-back-5416a0177bda.herokuapp.com";

@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Uncomment this line if you'll use axios
 import LogoutButton from '../components/LogoutButton';
+import '../styles/DashboardStyles.css';  // Import the styles
+
 
 
 function CashierDashboard() {

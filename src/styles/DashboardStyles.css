@@ -1,0 +1,15 @@
+/* src/styles/DashboardStyles.css */
+.logout-button-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Bootstrap light background color */
+    border-bottom: 1px solid #dee2e6; /* Bootstrap border color */
+    padding: 10px;
+    z-index: 1000;
+}
+
+.dashboard-content {
+    margin-top: 50px; /* Adjust this value to provide enough space below the fixed logout button */
+}

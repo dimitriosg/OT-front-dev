@@ -6,6 +6,8 @@ import TableBox from './dashFunctions/TableBox.js';
 import OrderManager from './dashFunctions/OrderManager.js';
 import './css/WaiterDashboard.css';  // Import the CSS
 import LogoutButton from '../components/LogoutButton';
+import '../styles/DashboardStyles.css';  // Import the styles
+
 
 
 const WaiterDashboard = () => {

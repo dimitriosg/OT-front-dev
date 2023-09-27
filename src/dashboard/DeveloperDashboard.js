@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import './css/DeveloperDashboard.css';
 import OrdersSection from '../pages/OrdersSection.js';
 import { useNavigate } from 'react-router-dom';
-import { switchRoleAndNavigate } from './dashFunctions/roleSwitcher.js';
+import RoleSwitcher from '../components/RoleSwitcher';
 import LogoutButton from '../components/LogoutButton';
+import '../styles/DashboardStyles.css';  // Import the styles
+
 
 
 const DeveloperDashboard = () => {
@@ -26,29 +28,10 @@ const DeveloperDashboard = () => {
   return (
     <div className="developer-dashboard">
       <LogoutButton />
+      <RoleSwitcher />
       <h1>Welcome, {userName}!</h1>
       <p>You have the role of Developer</p>
       <hr />
-      <h2>Tools:</h2>
-      {/* ...other code */}
-
-      {/* Buttons for functions in extraFunctions.js and funcSOS.js */}
-      {/* Example button: */}
-      <button onClick={() => { /* Call the appropriate function */ }}>
-        Execute Function 1
-      </button>
-      {/* ...other buttons */}
-
-      <select value={selectedRole} onChange={handleRoleChange}>
-                <option value="" disabled>Select role</option>
-                <option value="admin">Admin</option>
-                <option value="accountant">Accountant</option>
-                <option value="cashier">Cashier</option>
-                <option value="waiter">Waiter</option>
-      </select>
-      <button onClick={handleSwitchRole}>
-                Switch Role
-      </button>
     </div>
     
   );
