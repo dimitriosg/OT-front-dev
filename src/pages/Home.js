@@ -7,21 +7,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
   const isLoggedIn = localStorage.getItem('token') ? true : false;
+  const userRole = localStorage.getItem('role');
+  
+  const dashboardPath = `/dashboard/${userRole}Dashboard`;
 
 
   return (
     <div className="home-container">
-      <div className="d-flex justify-content-start">
-        <Link to="/" className="btn btn-secondary m-2">Back</Link>
-      </div>
+      {isLoggedIn && userRole && (
+        <Link to={dashboardPath} className="btn btn-primary m-2">Go To Dashboard</Link>
+      )}
+
       <h1>Welcome to Order Taker</h1>
       <p>Your one-stop solution for seamless order management.</p>
-      {isLoggedIn ? (
-        <div>
-          <Link to="/dashboard" className="btn btn-primary m-2">Go To Dashboard</Link>
-          <button onClick={() => localStorage.clear()} className="btn btn-danger m-2">Logout</button>
-        </div>
-      ) : (
+       {!isLoggedIn && (
         <Link to="/login" className="btn btn-primary m-2">Log In</Link>
       )}
     </div>
